@@ -1,0 +1,24 @@
+// Required plugins
+apply plugin: 'java'
+apply plugin: 'groovy'
+apply plugin: 'war'
+
+// War configuration
+war {
+    baseName = 'SpringMvcGroovy'
+    version =  '0.1.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Compile time dependencies
+    compile 'org.codehaus.groovy:groovy-all:2.2.1'
+    compile("org.springframework:spring-webmvc:4.0.0.RELEASE")
+    compile("org.thymeleaf:thymeleaf-spring3:2.0.17")
+
+    // Provided by Tomcat 7 container at runtime
+    providedCompile "javax.servlet:javax.servlet-api:3.+"
+}
