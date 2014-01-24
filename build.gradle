@@ -1,24 +1,34 @@
-// Required plugins
+buildscript {
+    repositories {
+        maven { url "http://repo.spring.io/libs-snapshot" }
+        mavenLocal()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.0.0.RC1")
+    }
+}
+
+
 apply plugin: 'java'
 apply plugin: 'groovy'
-apply plugin: 'war'
+apply plugin: 'spring-boot'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
 
-// War configuration
-war {
+
+jar {
     baseName = 'SpringMvcGroovy'
     version =  '0.1.0'
 }
 
 repositories {
     mavenCentral()
+    maven { url "http://repo.spring.io/libs-snapshot" }
 }
 
 dependencies {
-    // Compile time dependencies
     compile 'org.codehaus.groovy:groovy-all:2.2.1'
-    compile("org.springframework:spring-webmvc:4.0.0.RELEASE")
-    compile("org.thymeleaf:thymeleaf-spring3:2.0.17")
-
-    // Provided by Tomcat 7 container at runtime
-    providedCompile "javax.servlet:javax.servlet-api:3.+"
+    compile("org.springframework.boot:spring-boot-starter-web:1.0.0.RC1")
+    compile("org.thymeleaf:thymeleaf-spring4:2.1.2.RELEASE")
+    compile("nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:1.2.1")
 }
